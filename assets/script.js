@@ -52,9 +52,9 @@ var doSearch = function () {
 			if (typeof data.error == "object") {
 				searchNotice.textContent =
 					top.tinymce.activeEditor.translate("Error: ") +
-					data.code +
+					data.error.code +
 					" " +
-					data.message;
+					data.error.message;
 				return;
 			}
 
