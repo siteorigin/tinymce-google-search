@@ -30,9 +30,9 @@ if (!top.tinymce.activeEditor.getParam("google_cx")) {
 // Add translatable text to the form.
 document.getElementsByClassName(
 	"text"
-)[0].childNodes[0].textContent = top.tinymce.activeEditor.translate("text");
+)[0].childNodes[0].textContent = top.tinymce.activeEditor.translate("Text");
 linkContainer.childNodes[0].textContent = top.tinymce.activeEditor.translate(
-	"link"
+	"Link"
 );
 linkField.placeholder = top.tinymce.activeEditor.translate(
 	"Paste a link, or search"
