@@ -38,9 +38,18 @@ linkField.placeholder = top.tinymce.activeEditor.translate(
 	"Paste a link, or search"
 );
 
-textField.value = top.tinymce.activeEditor.selection.getContent({
-	format: "text",
-});
+// Pre-fill fields.
+// In the event the user is trying to edit an existing link, we need to detect the selected content slightly differently.
+if (top.tinymce.activeEditor.selection.getNode().nodeName == "A") {
+	let selectedNode = top.tinymce.activeEditor.selection.getNode();
+	textField.value = selectedNode.textContent;
+	linkField.value = selectedNode.href;
+	searchButton.disabled = false;
+} else {
+	textField.value = top.tinymce.activeEditor.selection.getContent({
+		format: "text",
+	});
+}
 
 textField.addEventListener("change", function () {
 	searchButton.disabled = !textField.value || !linkField.value;
