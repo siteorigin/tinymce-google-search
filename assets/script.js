@@ -9,6 +9,24 @@ var searchForm = document.getElementsByClassName("search-form")[0],
 	linkSearchResults = document.getElementsByClassName("search-results")[0],
 	searchDelayTimer = null;
 
+if (!top.tinymce.activeEditor.getParam("google_api")) {
+	document.body.innerHTML =
+		top.tinymce.activeEditor.translate("No Google API Key Detected.") +
+		' <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" rel="noopener noreferrer">' +
+		top.tinymce.activeEditor.translate("Read More") +
+		"</a>.";
+}
+
+if (!top.tinymce.activeEditor.getParam("google_cx")) {
+	document.body.innerHTML =
+		top.tinymce.activeEditor.translate(
+			"Unable to detect Google Search engine ID."
+		) +
+		' <a href="https://support.google.com/programmable-search/answer/2649143" target="_blank" rel="noopener noreferrer">' +
+		top.tinymce.activeEditor.translate("Read More") +
+		"</a>.";
+}
+
 // Add translatable text to the form.
 document.getElementsByClassName(
 	"text"
