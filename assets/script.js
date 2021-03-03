@@ -133,7 +133,8 @@ linkField.addEventListener("keyup", function () {
 
 	clearTimeout(searchDelayTimer);
 
-	if (!linkField.value) {
+	// If the field is empty, or if value starts with http, don't proceed.
+	if (!linkField.value || linkField.value.startsWith("http:")) {
 		return;
 	}
 
