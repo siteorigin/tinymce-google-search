@@ -55,6 +55,14 @@ textField.addEventListener("change", function () {
 	searchButton.disabled = !textField.value || !linkField.value;
 });
 
+// Handle Search Results Visibility.
+var hideSearchResultsList = function (e = false) {
+	if (!e || !linkContainer.contains(e.target)) {
+		linkSearchContainer.style.display = "none";
+		document.removeEventListener("click", hideSearchResultsList);
+	}
+};
+
 linkField.addEventListener("focus", function () {
 	linkSearchContainer.style.display = "block";
 	document.addEventListener("click", hideSearchResultsList);
@@ -198,11 +206,3 @@ searchForm.addEventListener("submit", function (e) {
 	);
 	top.tinymce.activeEditor.windowManager.close();
 });
-
-// Handle Search Results Visibility.
-var hideSearchResultsList = function (e = false) {
-	if (!e || !linkContainer.contains(e.target)) {
-		linkSearchContainer.style.display = "none";
-		document.removeEventListener("click", hideSearchResultsList);
-	}
-};
