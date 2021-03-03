@@ -77,6 +77,8 @@ var doSearch = function () {
 					data.error.code +
 					" " +
 					data.error.message;
+
+				searchNotice.style.display = "block";
 				return;
 			}
 
@@ -85,6 +87,7 @@ var doSearch = function () {
 				searchNotice.textContent = top.tinymce.activeEditor.translate(
 					"No valid search results found"
 				);
+				searchNotice.style.display = "block";
 				return;
 			}
 
@@ -122,6 +125,7 @@ var doSearch = function () {
 		.catch(function (err) {
 			searchNotice.textContent =
 				top.tinymce.activeEditor.translate("Error: ") + err;
+			searchNotice.style.display = "block";
 		});
 
 	spinner.style.display = "none";
@@ -135,6 +139,7 @@ linkField.addEventListener("keyup", function (e) {
 	searchButton.disabled = !textField.value || !linkField.value;
 	linkSearchResults.textContent = "";
 	searchNotice.textContent = "";
+	searchNotice.style.display = "none";
 
 	clearTimeout(searchDelayTimer);
 
