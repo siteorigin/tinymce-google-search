@@ -42,11 +42,6 @@ textField.value = top.tinymce.activeEditor.selection.getContent({
 	format: "text",
 });
 
-// Hide text field on load if text is already selected.
-if (textField.value) {
-	document.getElementsByClassName("text")[0].style.display = "none";
-}
-
 textField.addEventListener("change", function () {
 	searchButton.disabled = !textField.value || !linkField.value;
 });
