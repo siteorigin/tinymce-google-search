@@ -152,7 +152,6 @@ linkSearchResults.addEventListener("click", function (e) {
 		linkField.value = e.target.parentElement.link;
 		hideSearchResultsList();
 		e.preventDefault();
-		linkSearchResults.textContent = "";
 	}
 });
 
