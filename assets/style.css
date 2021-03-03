@@ -79,7 +79,8 @@ input:focus {
 	position: relative;
 }
 
-.search-results li:hover {
+.search-results li:hover,
+.search-results li:focus {
 	background: #eee;
 }
 
@@ -104,14 +105,17 @@ input:focus {
 
 .open-external {
 	display: none;
-}
-
-.search-results li:hover .open-external {
-	display: block;
 	position: absolute;
 	right: 0;
 	top: 0;
 	padding: 14px 5px;
+}
+
+/* .search-results li.has-focus .open-external, */
+.search-results li:hover .open-external,
+.search-results li:focus .open-external,
+.search-results li:focus-within .open-external {
+	display: block;
 }
 
 .search-button {

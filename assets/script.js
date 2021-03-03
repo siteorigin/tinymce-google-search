@@ -90,6 +90,7 @@ var doSearch = function () {
 
 			data.items.forEach(function (item) {
 				let newListItem = document.createElement("li");
+				newListItem.setAttribute("tabindex", "0");
 
 				// Title.
 				let itemTitle = document.createElement("span");
@@ -126,7 +127,11 @@ var doSearch = function () {
 	spinner.style.display = "none";
 };
 
-linkField.addEventListener("keyup", function () {
+linkField.addEventListener("keyup", function (e) {
+	// Don't allow tab to trigger this.
+	if (e.keyCode == 9) {
+		return;
+	}
 	searchButton.disabled = !textField.value || !linkField.value;
 	linkSearchResults.textContent = "";
 	searchNotice.textContent = "";
@@ -148,6 +153,35 @@ linkSearchResults.addEventListener("click", function (e) {
 		hideSearchResultsList();
 		e.preventDefault();
 		linkSearchResults.textContent = "";
+	}
+});
+
+// Keyboard Accessibility for link search results list.
+linkSearchResults.addEventListener("keydown", function (e) {
+	if (e.keyCode == 38 && e.target.previousSibling != null) {
+		// Up pressed.
+		e.target.previousSibling.focus();
+		e.preventDefault();
+	} else if (e.keyCode == 40) {
+		// Down pressed.
+		e.preventDefault();
+		if (e.target.nextSibling == null) {
+			// Last item, close list and focus button.
+			hideSearchResultsList();
+			searchButton.focus();
+		} else {
+			e.target.nextSibling.focus();
+		}
+	} else if (
+		e.keyCode == 9 &&
+		e.target.nodeName != "A" &&
+		e.target.nextSibling == null
+	) {
+		// Tab pressed, and .open-external doesn't have focus.
+		// Last item, close list and focus button.
+		e.preventDefault();
+		hideSearchResultsList();
+		searchButton.focus();
 	}
 });
 
